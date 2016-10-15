@@ -22,8 +22,7 @@ module.exports = {
   resolve: {
     root: './',
     alias:{
-      OpenWeatherMap: 'app/api/openweathermap.jsx',
-      ErrorModal: 'app/components/ErrorModal.jsx'
+      OpenWeatherMap: 'app/api/openweathermap.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },
