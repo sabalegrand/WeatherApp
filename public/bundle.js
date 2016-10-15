@@ -113,17 +113,17 @@
 
 	var _Weather2 = _interopRequireDefault(_Weather);
 
-	var _About = __webpack_require__(273);
+	var _About = __webpack_require__(274);
 
 	var _About2 = _interopRequireDefault(_About);
 
-	var _Examples = __webpack_require__(274);
+	var _Examples = __webpack_require__(275);
 
 	var _Examples2 = _interopRequireDefault(_Examples);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(275);
+	__webpack_require__(276);
 	$(document).foundation();
 
 	_reactDom2.default.render(_react2.default.createElement(
@@ -27349,6 +27349,10 @@
 
 	var _OpenWeatherMap2 = _interopRequireDefault(_OpenWeatherMap);
 
+	var _ErrorModal = __webpack_require__(273);
+
+	var _ErrorModal2 = _interopRequireDefault(_ErrorModal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27379,7 +27383,8 @@
 	      var self = this;
 
 	      this.setState({
-	        isLoading: true
+	        isLoading: true,
+	        errorMessage: undefined
 	      });
 
 	      _OpenWeatherMap2.default.getTemp(location).then(function (temp) {
@@ -27388,11 +27393,11 @@
 	          temp: temp,
 	          isLoading: false
 	        });
-	      }, function (errorMessage) {
+	      }, function (e) {
 	        self.setState({
-	          isLoading: false
+	          isLoading: false,
+	          errorMessage: e.message
 	        });
-	        alert(errorMessage);
 	      });
 	    }
 	  }, {
@@ -27402,6 +27407,7 @@
 	      var isLoading = _state.isLoading;
 	      var temp = _state.temp;
 	      var location = _state.location;
+	      var errorMessage = _state.errorMessage;
 
 
 	      function renderMessage() {
@@ -27416,6 +27422,12 @@
 	        }
 	      }
 
+	      function renderError() {
+	        if (typeof errorMessage === 'string') {
+	          return _react2.default.createElement(_ErrorModal2.default, { message: errorMessage });
+	        }
+	      }
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -27425,7 +27437,8 @@
 	          'Get Weather'
 	        ),
 	        _react2.default.createElement(_WeatherForm2.default, { onSearch: this.handleSearch }),
-	        renderMessage()
+	        renderMessage(),
+	        renderError()
 	      );
 	    }
 	  }]);
@@ -29058,6 +29071,93 @@
 /* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(8);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ErrorModal = function (_React$Component) {
+	  _inherits(ErrorModal, _React$Component);
+
+	  function ErrorModal() {
+	    _classCallCheck(this, ErrorModal);
+
+	    return _possibleConstructorReturn(this, (ErrorModal.__proto__ || Object.getPrototypeOf(ErrorModal)).apply(this, arguments));
+	  }
+
+	  _createClass(ErrorModal, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var modal = new Foundation.Reveal($('#error-modal'));
+	      modal.open();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var title = _props.title;
+	      var message = _props.message;
+
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'error-modal', className: 'reveal tiny text-center', 'data-reveal': '' },
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          title
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          message
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'button hollow', 'data-close': '' },
+	            'Ok'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ErrorModal;
+	}(_react2.default.Component);
+
+	ErrorModal.defaultProps = {
+	  title: 'Error'
+	};
+
+	ErrorModal.propTypes = {
+	  title: _react.PropTypes.string,
+	  message: _react.PropTypes.string.isRequired
+	};
+
+	exports.default = ErrorModal;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+
+/***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -29095,7 +29195,7 @@
 	exports.default = About;
 
 /***/ },
-/* 274 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29154,16 +29254,16 @@
 	exports.default = Examples;
 
 /***/ },
-/* 275 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(276);
+	var content = __webpack_require__(277);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(278)(content, {});
+	var update = __webpack_require__(279)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -29180,10 +29280,10 @@
 	}
 
 /***/ },
-/* 276 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(277)();
+	exports = module.exports = __webpack_require__(278)();
 	// imports
 
 
@@ -29194,7 +29294,7 @@
 
 
 /***/ },
-/* 277 */
+/* 278 */
 /***/ function(module, exports) {
 
 	/*
@@ -29250,7 +29350,7 @@
 
 
 /***/ },
-/* 278 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
