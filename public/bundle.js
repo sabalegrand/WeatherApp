@@ -27419,6 +27419,11 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Weather Component'
+	        ),
 	        _react2.default.createElement(_WeatherForm2.default, { onSearch: this.handleSearch }),
 	        renderMessage()
 	      );
