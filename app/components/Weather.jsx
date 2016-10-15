@@ -6,6 +6,7 @@ import WeatherMessage from './WeatherMessage.jsx';
 import openWeatherMap from 'OpenWeatherMap';
 
 
+
 class Weather extends React.Component {
   constructor() {
     super();

@@ -27190,11 +27190,14 @@
 	    null,
 	    _react2.default.createElement(_Nav2.default, null),
 	    _react2.default.createElement(
-	      'h2',
-	      null,
-	      'Main Component'
-	    ),
-	    props.children
+	      'div',
+	      { className: 'row' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'columns medium-6 large-4 small-centered' },
+	        props.children
+	      )
+	    )
 	  );
 	};
 
@@ -27550,7 +27553,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var OPEN_WEATHER_MAP_URL = 'api.openweathermap.org/data/2.5/weather?appid=6cd94dcc8ec0775500ae8ba5cad6841e&units=metric';
+	var OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=6cd94dcc8ec0775500ae8ba5cad6841e&units=metric';
 
 	exports.default = {
 	  getTemp: function getTemp(location) {
@@ -27558,7 +27561,6 @@
 	    var requestUrl = OPEN_WEATHER_MAP_URL + '&q=' + encodedLocation;
 
 	    return _axios2.default.get(requestUrl).then(function (res) {
-	      console.log(res);
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
@@ -29087,6 +29089,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(179);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Examples = function Examples() {
@@ -29094,14 +29098,36 @@
 	    'div',
 	    null,
 	    _react2.default.createElement(
-	      'h3',
-	      null,
+	      'h1',
+	      { className: 'text-center' },
 	      'Examples Component'
 	    ),
 	    _react2.default.createElement(
 	      'p',
 	      null,
-	      'Welcome to examples page!'
+	      'Here are a few example locations to try out:'
+	    ),
+	    _react2.default.createElement(
+	      'ol',
+	      null,
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/?location=Casablanca' },
+	          'Casablanca, Maroc'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'li',
+	        null,
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/?location=Thouars' },
+	          'Thouars, France'
+	        )
+	      )
 	    )
 	  );
 	};

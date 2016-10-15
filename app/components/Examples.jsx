@@ -1,10 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router';
+
 
 const Examples = () => {
     return (
       <div>
-        <h3>Examples Component</h3>
-        <p>Welcome to examples page!</p>
+        <h1 className="text-center">Examples Component</h1>
+        <p>Here are a few example locations to try out:</p>
+        <ol>
+          <li>
+            <Link to="/?location=Casablanca">Casablanca, Maroc</Link>
+          </li>
+          <li>
+            <Link to="/?location=Thouars">Thouars, France</Link>
+          </li>
+        </ol>
       </div>
     );
 }
