@@ -27408,7 +27408,7 @@
 	        if (isLoading === true) {
 	          return _react2.default.createElement(
 	            'h3',
-	            null,
+	            { className: 'text-center' },
 	            'Fetching weather...'
 	          );
 	        } else if (temp && location) {
@@ -27420,9 +27420,9 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          'Weather Component'
+	          'h1',
+	          { className: 'text-center' },
+	          'Get Weather'
 	        ),
 	        _react2.default.createElement(_WeatherForm2.default, { onSearch: this.handleSearch }),
 	        renderMessage()
@@ -27496,7 +27496,7 @@
 	            type: 'text', placeholder: 'Enter city name' }),
 	          _react2.default.createElement(
 	            'button',
-	            null,
+	            { className: 'button expanded hollow' },
 	            'Get Wheater'
 	          )
 	        )
@@ -27513,7 +27513,7 @@
 /* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -27530,13 +27530,13 @@
 	  var temp = _ref.temp;
 
 	  return _react2.default.createElement(
-	    'h3',
-	    null,
-	    'It\'s ',
+	    "h3",
+	    { className: "text-center" },
+	    "It's ",
 	    temp,
-	    ' in ',
+	    " in ",
 	    location,
-	    '.'
+	    "."
 	  );
 	};
 
@@ -29058,7 +29058,7 @@
 /* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -29072,9 +29072,23 @@
 
 	var About = function About() {
 	  return _react2.default.createElement(
-	    'h3',
+	    "div",
 	    null,
-	    'About Component'
+	    _react2.default.createElement(
+	      "h1",
+	      { className: "text-center" },
+	      "About"
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "This is a weather application built on React."
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      "blablablabla..."
+	    )
 	  );
 	};
 
@@ -29105,7 +29119,7 @@
 	    _react2.default.createElement(
 	      'h1',
 	      { className: 'text-center' },
-	      'Examples Component'
+	      'Examples'
 	    ),
 	    _react2.default.createElement(
 	      'p',
